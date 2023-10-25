@@ -18,6 +18,9 @@ def draw_menu(context, *args):
     Returns:
         dict: A custom context to help display menus.
     """
+    
+    if args:
+        args = [item.capitalize() for item in args]
         
     menu_slug = context['request'].menu_slug
     submenu_slug = context['request'].submenu_slug
