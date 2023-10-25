@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<title>{{title}}</title>
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+	</head>
+	<body>
+		<a href="{% url 'index' %}">Main Page</a>
+		<hr>
+
+		{% block content %}
+		{% endblock %}
+	
+	</body>
+</html>

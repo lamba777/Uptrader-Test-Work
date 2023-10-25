@@ -1,0 +1,31 @@
+<ul>
+    {% for menu, submenus in structured_menu.items %}
+        {% if menu.slug == menu_slug %}
+            <li>{{ menu }}</li>
+            <ul>
+                {% if menu_slug %}
+                    {% for submenu, finalmenus in submenus.items %}
+                        {% if submenu.slug == submenu_slug %}
+                            <li>{{ submenu }}</li>
+                                <ul>
+                                    {% if submenu_slug %}
+                                        {% for finalmenu in finalmenus %}
+                                            {% if finalmenu.slug == finalmenu_slug %}
+                                                <li>{{ finalmenu }}</li>
+                                            {% else %}
+                                                <li><a href="{% url 'finalmenu_page' menu.slug submenu.slug finalmenu.slug %}">{{ finalmenu }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </ul>
+                        {% else %}
+                            <li><a href="{% url 'submenu_page' menu.slug submenu.slug %}">{{ submenu }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        {% else %}
+            <li><a href="{% url 'expanded_menu' menu.slug %}">{{ menu }}</a></li>
+        {% endif %}
+    {% endfor %}    
+</ul>
